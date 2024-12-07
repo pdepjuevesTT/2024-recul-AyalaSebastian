@@ -73,9 +73,16 @@ cuantoQueda(Dinero, Valor, DineroRestante):-
     DineroRestante is Dinero - Valor.
 
 %con listas
-puedeComprar(Persona, Dinero):-
+puedeComprar(Lista, Dinero):-
     valorPropiedadDe(Persona, Valor),
     Dinero >= Valor.
 
+sublista([],[]).
+sublista([_|cola], sublista):-
+    sublista(cola,sublista).
+sublista([cabeza|cola],[cabeza|sublista]):-
+    sublista(cola,sublista).
+
 comprarCasas(Lista, Dinero, Restante):-
     findall(Template, puedeComprar(Persona, Dinero), Lista).
+    
