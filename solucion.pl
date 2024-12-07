@@ -56,19 +56,24 @@ barrioCaro(Barrio):-
     localidad(Persona, Barrio).
 
 %punto 4 
-valor(casa, juan, 150000).
-valor(casa, nico, 80000).
-valor(departamento, alf, 150000).
-valor(loft, julian, 140000).
-valor(departamento, vale, 95000).
-valor(casa, fer, 60000).
+valorPropiedadDe(juan, 150000).
+valorPropiedadDe(nico, 80000).
+valorPropiedadDe(alf, 150000).
+valorPropiedadDe(julian, 140000).
+valorPropiedadDe(vale, 95000).
+valorPropiedadDe(fer, 60000).
 
-sublist([Dinero|DineroRestante]).
+sublist([250000|0]).
 
+%sin listas
+comprarCasaDe(Persona, Dinero, DineroRestante):-
+    valorPropiedadDe(Persona, Valor),
+    Dinero >= Valor,
+    cuantoQueda(Dinero, Valor, DineroRestante).
+    
+cuantoQueda(Dinero, Valor, DineroRestante):-
+    DineroRestante is Dinero - Valor.
 
-comprarCasaDe(Persona, Dinero):-
-    valor(_, Persona, Valor),
-    Dinero >= Valor.
-    %retornar valor
+%con listas
 
-sePuedeComprar(d).
+  
