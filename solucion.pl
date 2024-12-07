@@ -63,8 +63,6 @@ valorPropiedadDe(julian, 140000).
 valorPropiedadDe(vale, 95000).
 valorPropiedadDe(fer, 60000).
 
-sublist([250000|0]).
-
 %sin listas
 comprarCasaDe(Persona, Dinero, DineroRestante):-
     valorPropiedadDe(Persona, Valor),
@@ -75,5 +73,9 @@ cuantoQueda(Dinero, Valor, DineroRestante):-
     DineroRestante is Dinero - Valor.
 
 %con listas
+puedeComprar(Persona, Dinero):-
+    valorPropiedadDe(Persona, Valor),
+    Dinero >= Valor.
 
-  
+comprarCasas(Lista, Dinero, Restante):-
+    findall(Template, puedeComprar(Persona, Dinero), Lista).
